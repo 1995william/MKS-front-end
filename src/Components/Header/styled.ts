@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100vw;
   height: 101px;
-  left: 0;
-  top: 0;
   background: var(--azul);
+  button {
+    margin-right: 88px;
+  }
 `;
 
 export const Logo = styled.div`
