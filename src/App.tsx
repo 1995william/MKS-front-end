@@ -1,5 +1,6 @@
 import { GlobalStyle } from "./styles/global";
 import { Header } from "./Components/Header/Header";
+import { Produtos } from "./Components/Produtos/Produtos";
 
 function App() {
   return (
@@ -7,6 +8,9 @@ function App() {
       <GlobalStyle />
       <div className="App">
         <Header/>
+        <main>
+          <Produtos/>
+        </main>
       </div>
     </>
   );
