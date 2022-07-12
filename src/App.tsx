@@ -1,17 +1,20 @@
 import { GlobalStyle } from "./styles/global";
 import { Header } from "./Components/Header/Header";
 import { Produtos } from "./Components/Produtos/Produtos";
+import { Footer } from "./Components/Footer/Footer";
+import { Main, Container } from "./styles/styled";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <div className="App">
-        <Header/>
-        <main>
-          <Produtos/>
-        </main>
-      </div>
+      <Container>
+        <Header />
+        <Main>
+          <Produtos />
+        </Main>
+        <Footer />
+      </Container>
     </>
   );
 }

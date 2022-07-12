@@ -1,5 +1,5 @@
 export interface IButton {
     icone?: string;
-    texto: string | number;
-    onClick?: (e:any) => void;
+    texto?: string | number;
+    onClick?: () => void;
 }

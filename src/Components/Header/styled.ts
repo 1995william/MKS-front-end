@@ -10,6 +10,12 @@ export const HeaderContainer = styled.header`
   button {
     margin-right: 88px;
   }
+
+  @media (max-width: 768px) {
+    button {
+      margin-right: 44px;
+    }
+  }
 `;
 
 export const Logo = styled.div`
@@ -32,5 +38,13 @@ export const Logo = styled.div`
     left: 165px;
     font-weight: 300;
     font-size: 20px;
+  }
+  @media (max-width: 768px) {
+    h1 {
+      left: 30px;
+    }
+    p {
+      left: 130px;
+    }
   }
 `;
