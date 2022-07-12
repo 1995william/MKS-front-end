@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  max-width: inherit;
-  max-height: inherit;
+  max-width: 218px;
+  max-height: 285px;
   border-radius: 8px;
   background: var(--branco);
   display: grid;
@@ -23,6 +23,7 @@ export const CardContainer = styled.div`
     font-weight: 400;
     font-size: 16px;
     padding: 0 10px;
+    align-self: center;
     &:nth-child(3) {
       width: 70px;
       height: 26px;
