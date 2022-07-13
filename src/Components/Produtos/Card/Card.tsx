@@ -2,19 +2,18 @@ import { Button } from "../../Button/Button";
 import { CardContainer } from "./styled";
 import sacola from "../../../assets/imgs/sacola.svg";
 import { ICard } from "../../../@types/ICard";
-import { useCart } from "../../../context/cartContext";
+import { addToCart } from "../../../redux/action";
+import { useDispatch } from "react-redux";
 
 export const Card = ({id,imagem,titulo,descricao,preco}:ICard) => {
-
-    const {count,setCount,selectedCart,setSelectedCart} = useCart()
+    const dispatch = useDispatch();
     
-    const handleClick =(id:number)=> {
-       const produtoSelecionado = {
-        id
-       }  
-       setSelectedCart([produtoSelecionado])
+    const product = {
+        id: id,
+        title: titulo,
+        image: imagem,
+        price: preco,
     }
-    console.log(selectedCart)
     return (
 
         <CardContainer>
@@ -24,7 +23,7 @@ export const Card = ({id,imagem,titulo,descricao,preco}:ICard) => {
             <p>{descricao}</p>
 
             <Button
-            onClick={(e)=>  handleClick(id)}
+            onClick={()=> dispatch(addToCart(product))}
             icone={sacola}
             texto={"comprar"}
             />
