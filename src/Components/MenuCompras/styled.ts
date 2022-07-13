@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.aside<{menuOpen: boolean, menuClose?:boolean}>`
+export const Container = styled.aside<{menuOpen?: boolean}>`
   background: var(--azul);
   box-shadow: -5px 0px 6px rgba(0, 0, 0, 0.13);
   position: fixed;
