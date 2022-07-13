@@ -1,35 +1,40 @@
-import { useEffect, useState } from "react";
 import { Iproduto } from "../../@types/IProdutos";
-import { apiProdutos } from "../../service/apiProdutos";
+import { useFetch } from "../../service/apiProdutos";
+import { Skeleton } from "../Skeleton/Skeleton";
 import { Card } from "./Card/Card";
 import { ProdutosContainer } from "./styled";
 
 export const Produtos = () => {
-  const [produtos, setProdutos] = useState([]);
+  const { data, loading } = useFetch(
+    "products?page=1&rows=8&sortBy=id&orderBy=ASC"
+  );
 
-  useEffect(() => {
-    const getData = async () => {
-      const data = await apiProdutos();
-      setProdutos(data.products);
-    };
-    getData();
-  }, []);
-
-//   console.log(produtos);
   return (
     <ProdutosContainer>
-      {produtos.map((produto: Iproduto) => (
-        
-        <div key={produto.id}>
-          <Card
-            id={produto.id}
-            imagem={produto.photo}
-            titulo={produto.name}
-            descricao={produto.description}
-            preco={produto.price}
-          />
-        </div>
-      ))}
+      {loading ? (
+        <>
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </>
+      ) : (
+        data.products.map((produto: Iproduto) => (
+          <div key={produto.id}>
+            <Card
+              id={produto.id}
+              imagem={produto.photo}
+              titulo={produto.name}
+              descricao={produto.description}
+              preco={produto.price}
+            />
+          </div>
+        ))
+      )}
     </ProdutosContainer>
   );
 };

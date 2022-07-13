@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-export const ListaItens = styled.ul`
-  /* background: #999; */
-  min-height: 615px;
+export const ListaItens = styled.ul<{ size: number }>`
+  min-height: ${(props) => (props.size > 5 ? `none` : `615px`)};
   margin-top: 64px;
 
   li {
@@ -75,7 +74,7 @@ export const ListaItens = styled.ul`
   @media (max-width: 767px) {
     /* padding: 0 10px; */
     li {
-        max-width: 350px;
+      max-width: 350px;
     }
   }
 `;
