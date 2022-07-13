@@ -2,36 +2,25 @@ import { Container, FinalizarCompra, Total } from "./styled";
 import fechar from "../../assets/imgs/x.svg";
 import { ListaCompras } from "./ListaCompras/Lista";
 import { Button } from "../Button/Button";
-import { useState } from "react";
 
 interface ImenuCompras {
-    open: boolean;
+  open: boolean;
+  close: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export const MenuCompras = ({open}:ImenuCompras) => {
-    const [menuClose,setMenuClose] = useState(true);
-// let menuOpen = open
+export const MenuCompras = ({ open, close }: ImenuCompras) => {
+  const handleClick = () => close(false);
 
-  
-     
-      
-    
-    console.log(menuClose)
   return (
-    <Container menuOpen={ open || menuClose} >
+    <Container menuOpen={open ? true : false}>
       <article>
         <h1>
           Carrinho de <br />
           compras
         </h1>
-        <Button icone={fechar} 
-        onClick={()=>  setMenuClose(!menuClose)}
-        />
+        <Button icone={fechar} onClick={handleClick} />
       </article>
       <ListaCompras />
-      <Total>
-        <p>Total:</p>
-        <p>R$798</p>
-      </Total>
+
       <FinalizarCompra>
         <p>Finalizar Compra</p>
       </FinalizarCompra>
