@@ -27,10 +27,10 @@ export const Produtos = () => {
           <div key={produto.id}>
             <Card
               id={produto.id}
-              imagem={produto.photo}
-              titulo={produto.name}
-              descricao={produto.description}
-              preco={produto.price}
+              photo={produto.photo}
+              title={produto.name}
+              description={produto.description}
+              price={produto.price}
             />
           </div>
         ))
