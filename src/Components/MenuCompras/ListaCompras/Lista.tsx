@@ -3,46 +3,46 @@ import { Button } from "../../Button/Button";
 import fechar from "../../../assets/imgs/x.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { Total } from "../styled";
-import { removeFromCart } from "../../../redux/action";
-import { useState } from "react";
+import { decrementItem, incrementItem, removeFromCart } from "../../../redux/action";
+import { IList } from "../../../@types/IList";
+import { IState } from "../../../@types/IState";
 
 export const ListaCompras = () => {
-  const products = useSelector((state: any) => state.cartData);
+  const products = useSelector((state: IState) => state.cartData);
   const dispatch = useDispatch();
-  const [qtd, setQtd] = useState(1);
+  let total = 0
 
-  let total = 0;
-
-  const handleClick = (product: any) => {
-    dispatch(removeFromCart(product));
-  };
-
+  const handleClick = (product: object) => dispatch(removeFromCart(product));
+ 
+  const decrement = (product:object) =>  dispatch(decrementItem(product));
+  
+  const increment = (product:object) =>  dispatch(incrementItem(product));
+  
   return (
     <>
+    
       <ListaItens size={products.length}>
-        {products.map((product: any) => {
-          {
-            total += parseInt(product.price) * qtd;
-          }
-
-          return (
-            <li key={product.id}>
-              <img src={product.image} alt={product.title} />
-              <p>{product.title}</p>
-              <section>
-                <p>Qtd:</p>
-                <div>
-                  <button onClick={() => setQtd(qtd > 1 ? qtd - 1 : 1)}>-</button>
-                  <p>{qtd}</p>
-                  <button onClick={() => setQtd(qtd + 1)}>+</button>
-                </div>
-              </section>
-              <p>R${parseInt(product.price)}</p>
-              <Fechar>
-                <Button icone={fechar} onClick={() => handleClick(product)} />
-              </Fechar>
-            </li>
-          );
+        {products.map((product: IList) => {
+          {total+= parseInt(product.price) * product.count}
+            
+              return (
+                <li key={product.id}>
+                  <img src={product.photo} alt={product.title} />
+                  <p>{product.title}</p>
+                  <section>
+                    <p>Qtd:</p>
+                    <div>
+                      <button onClick={()=>decrement(product)}>-</button>
+                      <p>{product.count}</p>
+                      <button onClick={()=>increment(product)}>+</button>
+                    </div>
+                  </section>
+                  <p>R${parseInt(product.price)}</p>
+                  <Fechar>
+                    <Button icone={fechar} onClick={() => handleClick(product)}/>
+                  </Fechar>
+                </li>
+              );
         })}
       </ListaItens>
       <Total>
